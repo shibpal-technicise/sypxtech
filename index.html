@@ -326,6 +326,77 @@ section { padding: 92px 8%; }
   font-size: 1.08rem;
 }
 
+
+.contact-section-simple{
+  max-width:860px;
+  margin:auto;
+  text-align:center;
+  padding:10px 0;
+}
+
+
+.contact-form {
+  margin-top: 34px;
+  display: grid;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-form label {
+  display: block;
+  color: #cbd5e1;
+  font-size: .92rem;
+  margin-bottom: 7px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(103,232,249,.28);
+  background: rgba(15,23,42,.82);
+  color: #fff;
+  outline: none;
+  font-size: .96rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(103,232,249,.78);
+  box-shadow: 0 0 0 3px rgba(56,189,248,.14);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.contact-form .btn {
+  border: none;
+  cursor: pointer;
+  justify-self: center;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+
+.thank-you-message {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(34,197,94,.12);
+  border: 1px solid rgba(34,197,94,.45);
+  color: #bbf7d0;
+  text-align: center;
+  font-weight: 500;
+}
+
 footer {
   padding: 65px 20px 40px;
   text-align: center;
@@ -387,6 +458,10 @@ footer p { color: #94a3b8; }
 
   .stats { grid-template-columns: 1fr; }
 
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
   section { padding: 70px 6%; }
 }
 </style>
@@ -420,7 +495,7 @@ footer p { color: #94a3b8; }
         </p>
 
         <div class="hero-actions">
-          <a class="btn" href="mailto:info@sypxtech.com">Get Consultation</a>
+          <a class="btn" href="mailto:shankar.oops@gmail.com">Get Consultation</a>
           <a class="btn secondary" href="#services">Explore Services</a>
         </div>
       </div>
@@ -483,17 +558,75 @@ footer p { color: #94a3b8; }
   </div>
 </section>
 
+
 <section id="contact">
   <div class="contact-box">
     <h3>Let's Discuss Your QA Requirements</h3>
-    <p>Whether you need manual testing, automation, API validation, regression testing or AI-powered quality engineering, SYPX Technologies can help.</p>
 
-    <div class="contact-details">
-      <p><strong>Location:</strong> Kolkata, India</p>
-      <p><strong>Email:</strong> info@sypxtech.com</p><p><strong>Phone:</strong> +91 - 87770 96882</p>
+    <p>
+      Whether you need manual testing, automation, API validation, regression testing or AI-powered quality engineering, SYPX Technologies can help.
+    </p>
+
+    <iframe name="hiddenContactFrame" style="display:none;"></iframe>
+
+    <form class="contact-form"
+          id="contactForm"
+          action="https://formsubmit.co/info@sypxtech.com"
+          method="POST"
+          target="hiddenContactFrame">
+      <input type="hidden" name="_subject" value="New SYPX Technologies Website Inquiry">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="Name" type="text" placeholder="Your name" required>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="Email" type="email" placeholder="Your email" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="Phone" type="tel" placeholder="Your phone number">
+        </div>
+
+        <div>
+          <label for="service">Service Required</label>
+          <input id="service" name="Service Required" type="text" placeholder="Manual QA, Automation, API Testing, etc.">
+        </div>
+      </div>
+
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="Message" placeholder="Tell us about your QA requirement" required></textarea>
+      </div>
+
+      <button class="btn" type="submit">Send Inquiry</button>
+    </form>
+
+    <div id="thankYouMessage" class="thank-you-message" style="display:none;">
+      Thank you for contacting SYPX Technologies. We have received your inquiry and will get back to you soon.
     </div>
+  </div>
+</section>
 
-    <a class="btn" href="mailto:info@sypxtech.com">Email Us</a>
+
+
+<section id="office">
+  <div class="section-title">
+    <h2>Our Office Location</h2>
+  </div>
+  <div style="text-align:center;">
+    <h3 style="color:#67e8f9;margin-bottom:12px;">SYPX Technologies</h3>
+    <p>Kolkata INDIA</p>
+    <p>Phone: +91 - 87770 96882</p>
+    <p>info@sypxtech.com</p>
   </div>
 </section>
 
@@ -584,6 +717,22 @@ function animate() {
 
 initParticles();
 animate();
+</script>
+
+
+<script>
+const contactForm = document.getElementById("contactForm");
+const thankYouMessage = document.getElementById("thankYouMessage");
+
+if (contactForm && thankYouMessage) {
+  contactForm.addEventListener("submit", function () {
+    setTimeout(function () {
+      contactForm.reset();
+      contactForm.style.display = "none";
+      thankYouMessage.style.display = "block";
+    }, 700);
+  });
+}
 </script>
 
 </body>
